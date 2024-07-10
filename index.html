@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dylan Dao Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="header">
+    <div class="container">
+      <nav>
+        <img src="images/logo.png" class="logo">
+        <ul>
+            <li><a href="#header">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-text">
+        <p>Frontend Software Engineer</p>
+        <h1>Hi, I'm <span>Dylan</span><br>Dao from CSUF</h1>
+      </div>
+    </div>
+  </div>
+  <!-- ----------about--------- -->
+  <div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/aboutme.JPG">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>Detail-oriented and highly motivated Software Engineer 
+                    with a strong academic background in computer science 
+                    and engineering. Skilled in coding languages such as 
+                    Python, JavaScript, and C++, with a passion for learning 
+                    new technologies. Proven ability to work well in team 
+                    settings, troubleshoot technical issues, and contribute 
+                    innovative solutions. Seeking an opportunity to apply my 
+                    theoretical knowledge and eager to gain practical experience 
+                    in a professional software development environment.</p>
+
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('languages')">Languages</p>
+                    <p class="tab-links" onclick="opentab('frameworks')">Frameworks</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="languages">
+                    <ul>
+                        <li>HTML<br></li>
+                        <li>CSS<br></li>
+                        <li>JavaScript<br></li>
+                        <li>Python<br></li>
+                        <li>C++<br></li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="frameworks">
+                    <ul>
+                        <li>React<br></li>
+                        <li>Bootstrap<br></li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>2021 - Present</span><br>Pursuing a Bachelor's Degree in Computer Science at California State University, Fullerton</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- -----------projects----------- -->
+  <div id="projects">
+    <div class="container">
+        <h1 class="sub-title">My Work</h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="images/work-1.png">
+                <div class="layer">
+                    <h2>PalTrade-Hub Website</h2>
+                    <p>PalTrade-Hub is an innovative online platform inspired 
+                        by the engaging gameplay of Palworld and the convenience 
+                        of Facebook Marketplace. Designed to facilitate the trading 
+                        and selling of Palworld creatures, items, and related goods, 
+                        PalTrade-Hub aims to create a vibrant community for players 
+                        and enthusiasts. With an intuitive interface and user-friendly 
+                        features, it serves as a central hub for all Palworld trading 
+                        activities, offering a secure and organized space for transactions.</p>
+                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn">See More</a>
+    </div>
+  </div>
+  <!-- --------------contact--------------- -->
+  <div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p>dylandao104@gmail.com</p>
+                <p>9493358115</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></i></a>
+                    <a href="#"><i class="fa fa-github-square"></i></a>
+                </div>
+                <a href="" download class="btn btn2">Download CV</a>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <script>
+
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+
+  </script>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzvxyY3LA6qjIAk0pyVt2JvqY2gsmvG1X9gky9Oav6t4tTQVCSrOjBnoeTfsrOuAqaZ/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+</body>    
+</html>
